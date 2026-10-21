@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova — Заманауи веб-студия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e14;
+    --card:#151a24;
+    --text:#e8eaf0;
+    --muted:#9aa3b2;
+    --accent1:#7c5cff;
+    --accent2:#00d4ff;
+    --grad:linear-gradient(135deg,#7c5cff,#00d4ff);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 6%;
+    backdrop-filter:blur(14px);
+    background:rgba(11,14,20,.7);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .logo{
+    font-weight:800;font-size:1.4rem;letter-spacing:.5px;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav a{color:var(--muted);font-weight:600;font-size:.95rem;transition:.3s}
+  nav a:hover{color:var(--text)}
+  .btn{
+    display:inline-block;padding:12px 26px;border-radius:50px;
+    font-weight:600;font-size:.95rem;cursor:pointer;border:none;
+    background:var(--grad);color:#fff;
+    box-shadow:0 8px 24px rgba(124,92,255,.35);
+    transition:.3s;
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(124,92,255,.55)}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.2);box-shadow:none}
+  .btn-ghost:hover{border-color:var(--accent2);box-shadow:0 0 24px rgba(0,212,255,.25)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;
+    padding:90px 6% 70px;
+    position:relative;
+  }
+  .hero::before{
+    content:"";position:absolute;top:-150px;left:-150px;width:500px;height:500px;
+    background:radial-gradient(circle,rgba(124,92,255,.35),transparent 70%);
+    filter:blur(40px);z-index:-1;
+  }
+  .hero::after{
+    content:"";position:absolute;bottom:-200px;right:-100px;width:500px;height:500px;
+    background:radial-gradient(circle,rgba(0,212,255,.25),transparent 70%);
+    filter:blur(40px);z-index:-1;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:22px;
+  }
+  .hero h1 span{
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);font-size:1.1rem;max-width:520px;margin-bottom:34px}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-img{
+    border-radius:24px;overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,.5);
+    border:1px solid rgba(255,255,255,.08);
+    animation:float 6s ease-in-out infinite;
+  }
+  .hero-img img{width:100%;display:block}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:70px 6%}
+  .section-title{text-align:center;margin-bottom:50px}
+  .section-title h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800}
+  .section-title p{color:var(--muted);margin-top:10px}
+
+  /* ---------- FEATURES ---------- */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.06);
+    transition:.4s;
+  }
+  .card:hover{transform:translateY(-8px);border-color:rgba(124,92,255,.5);box-shadow:0 20px 40px rgba(124,92,255,.2)}
+  .card img{width:100%;height:190px;object-fit:cover;display:block;transition:.5s}
+  .card:hover img{transform:scale(1.06)}
+  .card-body{padding:22px}
+  .card-body h3{margin-bottom:10px;font-size:1.2rem}
+  .card-body p{color:var(--muted);font-size:.95rem}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gallery img{
+    width:100%;height:220px;object-fit:cover;border-radius:14px;
+    transition:.4s;cursor:pointer;display:block;
+  }
+  .gallery img:hover{transform:scale(1.04);box-shadow:0 15px 35px rgba(0,0,0,.5)}
+  .gallery img:nth-child(1){grid-column:span 2;grid-row:span 2;height:100%}
+  .gallery img:nth-child(6){grid-column:span 2}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    text-align:center;
+    background:var(--grad);
+    border-radius:28px;
+    padding:70px 6%;
+    margin:0 6% 70px;
+  }
+  .cta h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:16px}
+  .cta p{opacity:.9;margin-bottom:30px}
+  .cta .btn{background:#0b0e14;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .cta .btn:hover{background:#000}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;padding:40px 6%;color:var(--muted);font-size:.9rem;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  footer .logo{font-size:1.1rem;margin-bottom:8px}
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{opacity:0;transform:translateY(40px);transition:.8s cubic-bezier(.2,.8,.2,1)}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:60px}
+    .hero p{margin:0 auto 34px}
+    .hero-actions{justify-content:center}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .gallery img:nth-child(1){grid-column:span 2;grid-row:span 1;height:220px}
+    .gallery img:nth-child(6){grid-column:span 2}
+    nav ul{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NOVA</div>
+  <nav>
+    <ul>
+      <li><a href="#features">Қызметтер</a></li>
+      <li><a href="#gallery">Галерея</a></li>
+      <li><a href="#contact">Байланыс</a></li>
+    </ul>
+  </nav>
+  <a href="#contact" class="btn">Бастау</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Бизнесіңізді <span>заманауи</span> деңгейге көтеріңіз</h1>
+    <p>Біз жылдам, әдемі және тиімді веб-сайттар жасаймыз. Дизайн, кодтау және іске қосу — бәрі бір жерде.</p>
+    <div class="hero-actions">
+      <a href="#features" class="btn">Қызметтерді көру</a>
+      <a href="#gallery" class="btn btn-ghost">Портфолио</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://picsum.photos/seed/nova-hero/800/600" alt="Hero">
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-title reveal">
+    <h2>Не ұсынамыз</h2>
+    <p>Заманауи технологиялармен жұмыс істейтін толық қызмет</p>
+  </div>
+  <div class="features">
+    <div class="card reveal">
+      <img src="https://picsum.photos/seed/design/600/400" alt="Дизайн">
+      <div class="card-body">
+        <h3>UI/UX Дизайн</h3>
+        <p>Пайдаланушыға ыңғайлы, әдемі және интуитивті интерфейстер жасаймыз.</p>
+      </div>
+    </div>
+    <div class="card reveal">
+      <img src="https://picsum.photos/seed/code/600/400" alt="Кодтау">
+      <div class="card-body">
+        <h3>Веб-әзірлеу</h3>
+        <p>Жылдам, қауіпсіз және SEO-ға бейімделген сайттарды кодтаймыз.</p>
+      </div>
+    </div>
+    <div class="card reveal">
+      <img src="https://picsum.photos/seed/marketing/600/400" alt="Маркетинг">
+      <div class="card-body">
+        <h3>Цифрлық маркетинг</h3>
+        <p>Сайтыңызды танымал етіп, клиенттер ағынын көбейтуге көмектесеміз.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-title reveal">
+    <h2>Біздің жұмыстар</h2>
+    <p>Соңғы жобалардан үзінділер</p>
+  </div>
+  <div class="gallery reveal">
+    <img src="https://picsum.photos/seed/g1/800/800" alt="">
+    <img src="https://picsum.photos/seed/g2/600/400" alt="">
+    <img src="https://picsum.photos/seed/g3/600/400" alt="">
+    <img src="https://picsum.photos/seed/g4/600/400" alt="">
+    <img src="https://picsum.photos/seed/g5/600/400" alt="">
+    <img src="https://picsum.photos/seed/g6/1200/600" alt="">
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta reveal">
+  <h2>Жобаңызды бастайық!</h2>
+  <p>Тегін кеңес алу үшін бізге хабарласыңыз</p>
+  <a href="mailto:hello@nova.kz" class="btn">Хабарласу</a>
+</section>
+
+<footer>
+  <div class="logo">NOVA</div>
+  <p>© 2026 Nova Studio. Барлық құқықтар қорғалған.</p>
+</footer>
+
+<script>
+  // Scroll-reveal анимациясы
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
